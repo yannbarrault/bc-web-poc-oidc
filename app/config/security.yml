@@ -16,6 +16,21 @@ security:
                 login_path: /private
                 use_referer: ~
                 create_users: true
+
     access_control:
-        - { path: ^/private, roles: ROLE_OIC_USER }
-        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/, roles: [ROLE_OIC_USER] }
+        - { path: ^/private, roles: [ROLE_OIC_USER, ROLE_APPLICATION_A, ROLE_APPLICATION_B] }
+
+    role_hierarchy:
+        ROLE_ADMIN: ['ROLE_APPLICATION_A', 'ROLE_APPLICATION_B']
+
+parameters:
+    roles:
+        users:
+            90342.ASDFJWFA: ['ROLE_OIC_USER', 'ROLE_APPLICATION_A']
+            01921.FLANRJQW: ['ROLE_OIC_USER', 'ROLE_ADMIN']
+            01922.FLANTEST: []
+        default: ['ROLE_OIC_USER']
+
+
+

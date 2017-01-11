@@ -8,8 +8,10 @@
     <body>
         <div class="container">
             <div class="page-header">
-                {% if is_granted('ROLE_OIC_USER') %}
+                {% if app.user %}
                     <span class="pull-right"><a href="{{ path('_oic_rp_logout') }}" class="btn btn-warning">{% trans %}Logout{% endtrans %}</a></span>
+                {% else %}
+                    <span class="pull-right"><a href="{{ path('login') }}" class="btn btn-warning">{% trans %}Login{% endtrans %}</a></span>
                 {% endif %}
                 <h1>{% trans %}OpenID_Connect_Relying_Party_sandbox{% endtrans %}</h1>
             </div>

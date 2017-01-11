@@ -10,15 +10,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="_welcome")
+     * @Route("/", name="welcome")
      * @Template()
      */
     public function indexAction()
     {
         return array();
     }
-    
-    
+
+    /**
+     * @Security("has_role('ROLE_OIC_USER')")
+     * @Route("/login", name="login")
+     */
+    public function loginAction()
+    {
+        return $this->forward('WaldoExempleBundle:Default:index');
+    }
+
     /**
      * @Security("has_role('ROLE_OIC_USER')")
      * @Route("/private", name="_private_page")
@@ -26,7 +34,6 @@ class DefaultController extends Controller
      */
     public function privateResouceAction()
     {
-        
         ob_start();
         var_dump($this->get('security.context')->getToken());
         $tokenRaw = ob_get_clean();

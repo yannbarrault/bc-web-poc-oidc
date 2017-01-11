@@ -3,8 +3,41 @@
 {% block content %}
 <h2>{% trans %}welcome_to_the_OpenID_Connect_Relying_Party_sandbox{% endtrans %}</h2>
 
-<p>{% trans %}this_page_doesnt_need_any_authentication{% endtrans %}</p>
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fringilla, orci sit amet hendrerit luctus, ante ante elementum mauris, at scelerisque lorem sapien sed libero. Nunc aliquet semper nulla, a egestas leo mollis et. Curabitur tristique consequat est, vel egestas risus gravida sed. Phasellus at ex vel erat dignissim gravida ac eu tortor. Sed diam turpis, venenatis ut convallis non, vehicula eget leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut metus purus, volutpat ut eros quis, hendrerit aliquam elit. Quisque tincidunt ante sit amet ante sodales sagittis in eu mauris. Mauris sed odio convallis, dapibus erat eu, facilisis neque. Duis accumsan rhoncus turpis eget commodo. Cras sodales, leo vitae ornare rutrum, nibh elit dignissim enim, eget fermentum orci elit nec nisl. Proin dignissim in tortor at molestie. Phasellus urna lorem, maximus non erat a, dignissim faucibus urna. Fusce vel diam consectetur, vehicula magna ut, tempor urna. Ut vehicula quis lectus et aliquam.
+</p>
 
-<p><a href="http://localhost:8000/private">{% trans %}click_this_link_to_go_to_a_private_page{% endtrans %}</a></p>
+{% if app.user %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Token content</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                {% if app.user.picture|default(null) is not null %}<span class="pull-right"><img src="{{ app.user.picture }}" /><br /><strong>{% trans %}Picture{% endtrans %}</strong></span>{% endif %}
+                {% if app.user|default(null) is not null %}<strong>{% trans %}Sub{% endtrans %} :</strong> {{ app.user }}<br />{% endif %}
+                {% if app.user.name|default(null) is not null %}<strong>{% trans %}Name{% endtrans %} :</strong> {{ app.user.name }}<br />{% endif %}
+                {% if app.user.given_name|default(null) is not null %}<strong>{% trans %}Given_name{% endtrans %} :</strong> {{ app.user.given_name }}<br />{% endif %}
+                {% if app.user.family_name|default(null) is not null %}<strong>{% trans %}Family_name{% endtrans %} :</strong> {{ app.user.family_name }}<br />{% endif %}
+                {% if app.user.middle_name|default(null) is not null %}<strong>{% trans %}Middle_name{% endtrans %} :</strong> {{ app.user.middle_name }}<br />{% endif %}
+                {% if app.user.birthdate|default(null) is not null %}<strong>{% trans %}Birthdate{% endtrans %} :</strong> {{ app.user.birthdate|date('d/m/Y') }}<br />{% endif %}
+                {% if app.user.email|default(null) is not null %}<strong>{% trans %}Email{% endtrans %} :</strong> {{ app.user.email }}<br />{% endif %}
+                {% if app.user.phone_number|default(null) is not null %}<strong>{% trans %}Phone_number{% endtrans %} :</strong> {{ app.user.phone_number }}<br />{% endif %}
+                {% if app.user.address|default(null) is not null %}<strong>{% trans %}Profil {% endtrans %} :</strong> {{ app.user.address }}<br />{% endif %}
+                <strong>Roles :</strong> {{ app.user.roles|join(', ') }}<br />
+            </p>
+        </div>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="...">
+        {% if is_granted('ROLE_APPLICATION_A') %}
+            <a class="btn btn-default" href="http://timwi.dev/app_dev.php/private">Application A</a>
+        {% endif %}
+
+        {% if is_granted('ROLE_APPLICATION_B') %}
+            <a class="btn btn-default" href="http://timwi.dev/app_dev.php/private">Application B</a>
+        {% endif %}
+    </div>
+{% endif %}
 
 {% endblock content %}
