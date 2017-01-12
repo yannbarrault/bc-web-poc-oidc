@@ -65,8 +65,13 @@ class UserProvider extends OICUserProvider
      *
      * @return array
      */
-    private function getUserRoles(OICUser $user) :array
-    {
-        return $this->roles['users'][$user->getUsername()] ?? $this->roles['default'];
-    }
+     private function getUserRoles(OICUser $user)
+     {
+         $roles = $this->roles['users'][$user->getUsername()];
+         if($roles) {
+             return $roles;
+         } else {
+             return $this->roles['default'];
+         }
+     }
 }
