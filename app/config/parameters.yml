@@ -13,14 +13,14 @@ parameters:
     locale: en
     secret: ThisTokenIsNotSoSecretChangeIt
     debug_toolbar: true
-    debug_redirects: false
+    debug_redirects: true
     use_assetic_controller: true
-    base_url: 'http://127.0.0.1:8000'
-    client_id: d9326efd-9489-44f5-a10a-644a99f8c289
-    client_secret: AME06uHNYvyLdnjQ7fSVG9qr4I8GXarHO_GN9hqdBLJkw5-ukALOpv_6PRbmKIL5ysMEXNeo6e3nrtTYoIq2gpE
-    oic_issuer: 'http://127.0.0.1:8080/openid-connect-server-webapp'
-    jwk_url: 'http://127.0.0.1:8080/openid-connect-server-webapp/jwk'
-    endpoints_url_authorization: /authorize
+    base_url: 'http://localhost:8888/gilles/web'
+    client_id: symfony
+    client_secret: elSDLq_nBXDEubmQwXumop2lxzXtZKUJY1k8UM8Rky-D71rTD0xB4lt693MBIDZd_Lh-WV5CgQ_M_YPg08QnGg
+    oic_issuer: 'http://localhost:8080/openid-connect-server-webapp/'
+    jwk_url: 'http://localhost:8080/openid-connect-server-webapp/jwk'
+    endpoints_url_authorization: authorize
     endpoints_url_token: /token
     endpoints_url_userinfo: /userinfo
-    endpoints_url_logout: /logout
+    endpoints_url_logout: logout
